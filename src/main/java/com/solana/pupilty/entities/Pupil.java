@@ -1,5 +1,6 @@
 package com.solana.pupilty.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solana.pupilty.enums.SubscriptionStatus;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -23,11 +24,15 @@ public class Pupil {
     Long id;
 
     private String userName;
+    @JsonIgnore
     private String password;
     private String name;
     private String lastName;
     private String mail;
     private String telNo;
     private SubscriptionStatus subscriptionStatus;
+
+
+
 
 }

@@ -10,12 +10,15 @@ import com.solana.pupilty.repository.LessonRepository;
 import com.solana.pupilty.repository.PupilRepository;
 import com.solana.pupilty.request.educaterRequest.CreateLessonRequest;
 import com.solana.pupilty.request.educaterRequest.CreateOneEducaterRequest;
+import com.solana.pupilty.request.educaterRequest.EducaterRequest;
 import com.solana.pupilty.response.Response;
 import com.solana.pupilty.util.ImageUtility;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -86,6 +89,16 @@ public class EducaterService {
         educater.getLessons().add(lesson); // lessons özelliğine yeni Lesson nesnesi ekleniyor
         educaterRepository.save(educater); // Educater nesnesi güncelleniyor
         return new Response(ResultConstants.GENERAL_SUCCESS_CODE, ResultConstants.GENERAL_SUCCESS_DESC);
+    }
+
+    public Optional<Educater> getByIdEducater(EducaterRequest request) {
+        Optional<Educater> educater = educaterRepository.findById(request.getId());
+        if(educater.isPresent()){
+            Educater fetchedEducater = educater.get();
+            return Optional.of(fetchedEducater);
+        }else{
+            return Optional.empty();
+        }
     }
 
 }

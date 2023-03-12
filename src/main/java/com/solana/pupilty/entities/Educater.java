@@ -2,6 +2,7 @@ package com.solana.pupilty.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -35,9 +36,12 @@ public class Educater {
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private ProfileImage image;
 
-    @OneToMany(mappedBy = "educater")
-    @JsonIdentityReference(alwaysAsId = true)
+    @OneToMany(mappedBy = "educater", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("educater")
     private List<Lesson> lessons = new ArrayList<>();
 
+    public List<Lesson> getLessonObjects() {
+        return this.lessons;
+    }
 
 }

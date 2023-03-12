@@ -9,6 +9,7 @@ import com.solana.pupilty.response.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.solana.pupilty.enums.SubscriptionStatus.NOT_SUBSCRIBED;
@@ -49,6 +50,10 @@ public class PupilService {
 
         return new Response(ResultConstants.GENERAL_SUCCESS_CODE, ResultConstants.GENERAL_SUCCESS_DESC);
 
+    }
+
+    public Optional<Pupil> getPupilById(Long id) {
+        return pupilRepository.findById(id);
     }
 
 }

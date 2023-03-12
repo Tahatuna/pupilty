@@ -1,11 +1,15 @@
 package com.solana.pupilty.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.solana.pupilty.enums.Category;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "lesson")
@@ -28,5 +32,6 @@ public class Lesson {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "educater_id", nullable = false)
     private Educater educater;
+
 
 }

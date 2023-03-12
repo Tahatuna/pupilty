@@ -1,6 +1,7 @@
 package com.solana.pupilty.entities;
 
 
+import com.solana.pupilty.enums.DemandStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,4 +22,10 @@ public class Demand {
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "educater_id")
+    private Educater educater;
+
+    @Enumerated(EnumType.STRING)
+    private DemandStatus status;
 }
